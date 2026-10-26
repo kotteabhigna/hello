@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura - Aesthetic Pastel Marketplace</title>
+    <!-- Google Fonts for Clean Typography -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES FOR PASTEL PALETTE --- */
+        :root {
+            --bg-creamy: #fbf9f6;
+            --pastel-mint: #e2efec;
+            --pastel-pink: #f7e1df;
+            --pastel-lavender: #e8e5f2;
+            --pastel-peach: #f9ebe0;
+            --text-dark: #3a3f3d;
+            --text-muted: #707774;
+            --white: #ffffff;
+            --accent-gold: #d4af37;
+            --card-shadow: 0 8px 24px rgba(180, 190, 185, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-creamy);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        /* --- AESTHETIC SEARCH BAR --- */
+        .search-bar-form {
+            flex: 0 1 400px;
+            margin: 0 1.5rem;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 50px;
+            background-color: var(--bg-creamy);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background-color: var(--white);
+            border-color: var(--text-muted);
+            box-shadow: 0 0 10px rgba(0,0,0,0.03);
+        }
+
+        .search-button {
+            position: absolute;
+            right: 5px;
+            background: var(--pastel-mint);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            opacity: 0.85;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a {
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--pastel-mint) 0%, var(--pastel-lavender) 100%);
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .hero-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .hero-btn {
+            background-color: var(--white);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- CATEGORIES MATRIX SECTION --- */
+        .sections-wrapper {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--text-dark);
+            margin: 0.75rem auto 0;
+        }
+
+        /* --- PRODUCT GRID ARCHITECTURE --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Generates stylized structural placeholders for products using CSS grid patterns */
+        .product-image-placeholder {
+            height: 280px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Color Coding Grid Accents via Pastel Variables */
+        .img-fashion { background-color: var(--pastel-pink); }
+        .img-electronics { background-color: var(--pastel-mint); }
+        .img-beauty { background-color: var(--pastel-lavender); }
+        .img-furniture { background-color: var(--pastel-peach); }
+
+        .placeholder-icon {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            color: var(--text-dark);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-to-cart-btn {
+            background: none;
+            border: 1px solid var(--text-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--white);
+        }
+
+        /* --- FOOTER SECTIONS --- */
+        footer {
+            background-color: var(--white);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
